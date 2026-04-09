@@ -8,7 +8,9 @@ class UsuarioMiddleware
 {
     public static function validarMiddlewareUsuario()
     {
+    try{
 
+    
         $tokenJWT = null;
 
         if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
@@ -40,17 +42,9 @@ class UsuarioMiddleware
             exit;
         }
 
-        try {
-            $jwt = JWT::decode($partesToken[1], new Key($chaveSecreta, 'HS256'));
-
-            if ($jwt->dados->cargo_usuario !== 'admin') {
-                http_response_code(403);
-                echo json_encode([
-                    'sucesso' => false,
-                    'mensagem' => 'Sem permissão para acessar essa rota'
-                ]);
-                exit;
-            }
+        
+        
+            
         } catch (ExpiredException $e) {
             http_response_code(401);
             echo json_encode([

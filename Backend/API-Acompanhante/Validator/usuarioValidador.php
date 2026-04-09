@@ -14,7 +14,7 @@ class UsuarioValidador
 
         $esquema = v::key('nome', v::stringVal()->length(5, 50)->notEmpty())
             ->key('email', v::email())
-            ->key('senha', v::stringVal()->notEmpty()->length(8, 50))
+            ->key('senha', v::stringVal()->notEmpty()->length(8, 50)->regex('/\d/')->regex('/[!@#$%¨&*()]/'))
             ->key('cpf', v::cpf())
             ->key('cargo', v::in($cargosPermitidos));
 

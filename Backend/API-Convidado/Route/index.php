@@ -2,8 +2,8 @@
 
 use Dotenv\Dotenv;
 require_once __DIR__ . "/../../vendor/autoload.php";
-require_once __DIR__ . "/../Controller/usuarioController.php";
-require_once __DIR__ . "/../Middleware/usuarioMiddleware.php";
+require_once __DIR__ . "/../Controller/convidadoController.php";
+require_once __DIR__ . "/../Middleware/convidadoMiddleware.php";
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
@@ -25,31 +25,24 @@ if($metodoRequisicao === "OPTIONS"){
     exit;
 }
 
-if($caminhoRequisicao === "/usuario"){
-    $usuarioController = new UsuarioController();
+if($caminhoRequisicao === "/convidado"){
+    $convidadoController = new ConvidadoController();
     // UsuarioMiddleware::validarMiddlewareUsuario();
 
     if($metodoRequisicao === "GET"){
-        $usuarioController->listarUsuarios();
+        $convidadoController->listarConvidados();
     }
     
     if($metodoRequisicao === "POST"){
-        $usuarioController->criarUsuario();
+        $convidadoController->criarConvidado();
     }
 
     if($metodoRequisicao === "PUT"){
-        $usuarioController->atualizarUsuario();
+        $convidadoController->atualizarConvidado();
     }
 
     if($metodoRequisicao === "DELETE"){
-        $usuarioController->deletarUsuario();
+        $convidadoController->deletarConvidado();
     }
 }
 
-if($caminhoRequisicao === "/usuario/login"){
-    $usuarioController = new UsuarioController();
-
-    if($metodoRequisicao === "POST"){
-        $usuarioController->fazerLogin();
-    }
-}

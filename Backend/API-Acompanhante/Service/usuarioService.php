@@ -19,7 +19,7 @@ class UsuarioService
     public function listarUsuarios()
     {
         $query = $this->usuarioDb->query("SELECT * FROM usuario");
-        $usuarios = $query->fetchAll();
+        $usuarios = $query->fetchAll(PDO::FETCH_ASSOC);
 
         return [
             'sucesso' => true,
