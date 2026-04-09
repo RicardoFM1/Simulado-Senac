@@ -38,7 +38,7 @@ class ConvidadoService
             return [
                 'sucesso' => false,
                 'mensagem' => 'Nenhum convidado encontrado pelo Id',
-                'codigo' => 404
+            
             ];
         }
 
@@ -146,7 +146,7 @@ class ConvidadoService
 
 
         $stmt = $this->convidadoDb->prepare("INSERT INTO convidado(nome, sobrenome, email, telefone, cpf, numero_mesa)
-        VALUES (:nome, :email, :senha, :cargo, :cpf)");
+        VALUES (:nome, :sobrenome, :email, :telefone, :cpf, :numero_mesa)");
 
         $stmt->execute([
             ':nome' => $convidadoDados['nome'],
@@ -231,14 +231,12 @@ class ConvidadoService
             throw new Exception('Insira o id do convidado', 400);
         }
 
-
-
         $convidadoExistentePorId = $this->buscarConvidadoPorId($idConvidado);
 
 
 
         if (isset($convidadoExistentePorId) && $convidadoExistentePorId['sucesso'] === true) {
-            throw new Exception($convidadoExistentePorId['mensagem'], $convidadoExistentePorId['codigo']);
+            throw new Exception($convidadoExistentePorId['mensagem'], 404);
         }
 
 

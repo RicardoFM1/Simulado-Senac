@@ -39,7 +39,7 @@ class UsuarioController
     {
         try {
             http_response_code(200);
-            $usuarioDados = json_decode(file_get_contents('php://input'), true);
+            $usuarioDados = json_decode(file_get_contents('php://input'), true) ?? null;
             $tokenJWT = null;
 
             if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
@@ -65,7 +65,7 @@ class UsuarioController
     {
         try {
             http_response_code(200);
-            $usuarioDados = json_decode(file_get_contents('php://input'), true);
+            $usuarioDados = json_decode(file_get_contents('php://input'), true) ?? null;
             $idUsuario = $_GET['id_usuario'];
             $tokenJWT = null;
 

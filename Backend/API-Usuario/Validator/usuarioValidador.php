@@ -10,7 +10,7 @@ class UsuarioValidador
     {
 
         $cargosPermitidos = ['admin', 'ceremonialista'];
-        $usuarioDados['cpf'] = str_replace([' ', '.', '-'], '', $usuarioDados['cpf']);
+       
 
         $esquema = v::key('nome', v::stringVal()->length(5, 50)->notEmpty())
             ->key('email', v::email())

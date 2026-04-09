@@ -130,9 +130,10 @@ class UsuarioService
 
     public function criarUsuario($usuarioDados)
     {
-         UsuarioValidador::validarUsuario($usuarioDados);
+        UsuarioValidador::validarUsuario($usuarioDados);
         // formatar cpf
         $usuarioDados['cpf'] = str_replace([' ', '.', '-'], '', $usuarioDados['cpf']);
+        
 
         if ($this->buscarUsuarioPorCpf($usuarioDados['cpf'])['sucesso']) {
             throw new Exception("Este CPF já está cadastrado", 409);
